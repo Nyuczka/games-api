@@ -1,12 +1,21 @@
 package com.sample.games_api.data;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.sample.games_api.deserializer.CustomLocalDateDeserializer;
+import lombok.*;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class GameData {
 
     private int id;
@@ -15,7 +24,7 @@ public class GameData {
 
     private String thumbnail;
 
-    @JsonProperty("short_description")
+    @JsonIgnore
     private String shortDescription;
 
     @JsonProperty("game_url")
@@ -30,6 +39,7 @@ public class GameData {
     private String developer;
 
     @JsonProperty("release_date")
-    private String releaseDate;
+    @JsonDeserialize(using = CustomLocalDateDeserializer.class)
+    private LocalDate releaseDate;
 
 }
