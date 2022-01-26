@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface GameRepository extends CrudRepository<Game, Integer> {
 
-    Optional<List<Game>> findGamesByPlatform(final String platform);
+    Optional<List<Game>> findByPlatformContaining(final String name);
 
     Optional<List<Game>> findGamesByDeveloper(final String developer);
 
